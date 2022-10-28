@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.SystemClock;
 import android.view.View;
+import android.view.Window;
 import android.widget.Chronometer;
+import android.os.Build;
 
 import android.os.Bundle;
 
@@ -14,10 +16,18 @@ public class MainActivity2 extends AppCompatActivity {
     private long pauseOffset;
     private boolean running;
 
+    Window window;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        if(Build.VERSION.SDK_INT >= 20) {
+            window = this.getWindow();
+            window.setStatusBarColor(this.getResources().getColor(R.color.cream));
+        }
 
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("%s");
